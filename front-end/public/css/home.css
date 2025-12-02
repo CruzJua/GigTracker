@@ -1,0 +1,8 @@
+select {
+    background-color: var(--bg-shadow);
+    border: solid 1px var(--mc);
+}
+
+.main-content {
+    background: var(--bg-shadow);
+}

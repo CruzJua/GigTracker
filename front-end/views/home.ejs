@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/css/root.css">
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+        <%- include('templates/header.ejs') %>
+        <section class="main-content">
+            <h1>Welcome to the home of easy Gig tracking!!</h1>
+            <p>Track your gigs and make your life easier</p>
+            <label for="gigs">Choose one of the following gigs:</label>
+            <select name="gigs" id="gigs">
+                <option value="gig1">Gig 1</option>
+                <option value="gig2">Gig 2</option>
+                <option value="gig3">Gig 3</option>
+            </select>
+        </section>
+        <%- include('templates/footer.ejs') %>
+    </body>
+</html>

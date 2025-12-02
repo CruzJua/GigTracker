@@ -1,0 +1,25 @@
+{
+  "name": "front-end",
+  "version": "1.0.0",
+  "description": "This This will hold the front-end of my gig tracker website",
+  "homepage": "https://github.com/CruzJua/GigTracker#readme",
+  "bugs": {
+    "url": "https://github.com/CruzJua/GigTracker/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CruzJua/GigTracker.git"
+  },
+  "license": "ISC",
+  "author": "Juan Cruz",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.2.1"
+  }
+}
