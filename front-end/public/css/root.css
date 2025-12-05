@@ -25,6 +25,14 @@ footer {
     justify-items: end;
     margin: 0 7px 0 0;
 }
+select {
+    background-color: var(--bg-shadow);
+    border: solid 1px var(--mc);
+}
+input {
+    background-color: var(--bg-shadow);
+    border: solid 1px var(--mc);
+}
 
 .nav-btn {
     color: var(--mc);
@@ -39,4 +47,5 @@ footer {
     justify-content: center;
     justify-items: center;
     justify-self: center;
+    width: 90%;
 }

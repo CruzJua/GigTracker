@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/css/root.css">
+        <link rel="stylesheet" href="/css/add-shift.css">
+    </head>
+    <body>
+        <%- include('templates/header.ejs') %>
+        <section class="main-content">
+            <h1>Add your shift details here</h1>
+            <p>Track your gigs and make your life easier</p>
+            <form action="/add-shift" method="POST">
+            <label for="source">Source of Earnings:</label>
+            <select name="source" required>
+                <option value="">Select a gig</option>
+                <% Object.keys(gigsByCatagory).forEach(function(category) { %>
+                <hr />
+                <optgroup label="<%= category %>">
+                <% gigsByCatagory[category].forEach(function(gig) { %>
+                    <option value="<%= gig.name %>"> <%= gig.name %></option>
+                <% }); %>
+                </optgroup>
+                <hr />
+            <% }); %>
+            </select>
+            <br />
+            <label for="payoutAmount">Total Amount Earned:</label>
+            <input type="number" name="payoutAmount" id="payoutAmount" required>
+            <br />
+            <label for="tips">Tips:</label>
+            <input type="number" name="tips" id="tips" required>
+            <br />
+            <label for="date">Date:</label>
+            <input type="date" name="date" id="date" required>
+            <br />
+            <label for="totalHoursWorked">Hours Worked:</label>
+            <input type="number" name="totalHoursWorked" id="totalHoursWorked" required>
+            <br />
+            <label for="notes">Notes:</label>
+            <span class="notes">
+            <textarea name="notes" id="notes"></textarea>
+            </span>
+            <br />
+            <input type="submit" value="Submit">
+            </form>
+            </section>
+        <%- include('templates/footer.ejs') %>
+    </body>
+</html>

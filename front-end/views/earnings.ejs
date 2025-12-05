@@ -3,32 +3,29 @@
     <head>
         <title><%= title %></title>
         <link rel="stylesheet" href="/css/root.css">
-        <link rel="stylesheet" href="/css/home.css">
-        <script src="/js/home.js"></script>
+        <link rel="stylesheet" href="/css/earnings.css">
+        <script src="/js/earnings.js"></script>
     </head>
     <body>
         <%- include('templates/header.ejs') %>
         <section class="main-content">
-            <h1>Welcome to the home of easy gig tracking!!</h1>
-            <p>Track your gigs and make your life easier</p>
-            <div>
-            <label for="gigs">Choose one of the following gigs:</label>
-            <select name="gigs" id="gigSelector">
-                <option value="">Select a gig</option>
+            <h1>Earnings</h1>
+            <p>See all your earnings</p>
+            <form action="/earnings" method="POST">
+            <select name="gigs" onchange="this.form.submit()">
+            <option value="">Select a gig</option>
             <% Object.keys(gigsByCatagory).forEach(function(category) { %>
                 <hr />
                 <optgroup label="<%= category %>">
                 <% gigsByCatagory[category].forEach(function(gig) { %>
-                    <option value="<%= gig.name %>"> <%= gig.name %></option>
+                    <option value="<%= gig.name %>" <%= gigToShow === gig.name ? 'selected' : '' %>> <%= gig.name %></option>
                 <% }); %>
                 </optgroup>
                 <hr />
             <% }); %>
             </select>
-        </div>
-            <br />
-            <h2 id="gigName"></h2>
-            </section>
+        </form>
+        </section>
         <%- include('templates/footer.ejs') %>
     </body>
 </html>
