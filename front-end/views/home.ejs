@@ -14,16 +14,7 @@
             <div>
             <label for="gigs">Choose one of the following gigs:</label>
             <select name="gigs" id="gigSelector">
-                <option value="">Select a gig</option>
-            <% Object.keys(gigsByCatagory).forEach(function(category) { %>
-                <hr />
-                <optgroup label="<%= category %>">
-                <% gigsByCatagory[category].forEach(function(gig) { %>
-                    <option value="<%= gig.name %>"> <%= gig.name %></option>
-                <% }); %>
-                </optgroup>
-                <hr />
-            <% }); %>
+            <%- include('templates/gig-selector.ejs', {gigToShow: gigToShow, gigsByCatagory: gigsByCatagory}); %>
             </select>
         </div>
             <br />

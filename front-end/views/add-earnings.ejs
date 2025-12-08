@@ -8,22 +8,25 @@
     <body>
         <%- include('templates/header.ejs') %>
         <section class="main-content">
-            <h1>Add your shift details here</h1>
+            <h1>Add your earnings details here</h1>
             <p>Track your gigs and make your life easier</p>
-            <form action="/add-shift" method="POST">
+            <form action="/add-earnings" method="POST">
             <label for="source">Source of Earnings:</label>
             <select name="source" required>
             <%- include('templates/gig-selector.ejs', {gigToShow: gigToShow, gigsByCatagory: gigsByCatagory}); %>
             </select>
             <br />
+            <label for="payoutAmount">Total Amount Earned:</label>
+            <input type="number" name="payoutAmount" id="payoutAmount" required>
+            <br />
+            <label for="tips">Tips:</label>
+            <input type="number" name="tips" id="tips" required>
+            <br />
             <label for="date">Date:</label>
-            <input type="date" name="date" required>
+            <input type="date" name="date" id="date" required>
             <br />
-            <label for="sOdometerReading">Start Odometer Reading:</label>
-            <input type="number" name="sOdometerReading" required>
-            <br />
-            <label for="eOdometerReading">End Odometer Reading:</label>
-            <input type="number" name="eOdometerReading" required>
+            <label for="totalHoursWorked">Hours Worked:</label>
+            <input type="number" name="totalHoursWorked" id="totalHoursWorked" required>
             <br />
             <label for="notes">Notes:</label>
             <span class="notes">

@@ -1,0 +1,10 @@
+<option value="">Select a gig</option>
+            <% Object.keys(gigsByCatagory).forEach(function(category) { %>
+                <hr />
+                <optgroup label="<%= category %>">
+                <% gigsByCatagory[category].forEach(function(gig) { %>
+                    <option value="<%= gig.id %>" <%= gigToShow === gig.id ? 'selected' : '' %>> <%= gig.name %></option>
+                <% }); %>
+                </optgroup>
+                <hr />
+            <% }); %>
