@@ -1,0 +1,19 @@
+table {
+    overflow-wrap: anywhere;
+}
+td {
+    min-width: 50px;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.actions button {
+    margin: 5px;
+    border: solid 1px var(--mc);
+    background-color: var(--bg-shadow);
+    color: var(--mc);
+    min-width: 55px;
+}

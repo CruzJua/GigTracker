@@ -98,6 +98,50 @@ let dal = {
             await client.close();
         }
     },
+    getEarningById: async (earningId) => {
+        try {
+            await client.connect();
+            const db = await client.db("gigTracker")
+            const collection = db.collection("earnings")
+            let earning = await collection.findOne({ _id: new ObjectId(earningId) });
+            let response = {
+                code: 200,
+                data: earning
+            }
+            return response;
+        } catch (error) {
+            console.log(`There was an error ${error}`)
+            let response = {
+                code: 500,
+                data: error
+            }
+            return response;
+        } finally {
+            await client.close();
+        }
+    },
+    getShiftById: async (shiftId) => {
+        try {
+            await client.connect();
+            const db = await client.db("gigTracker")
+            const collection = db.collection("shifts")
+            let shift = await collection.findOne({ _id: new ObjectId(shiftId) });
+            let response = {
+                code: 200,
+                data: shift
+            }
+            return response;
+        } catch (error) {
+            console.log(`There was an error ${error}`)
+            let response = {
+                code: 500,
+                data: error
+            }
+            return response;
+        } finally {
+            await client.close();
+        }
+    },
     getEarningsFromGig: async (gigId) => {
         try {
             await client.connect();
@@ -152,6 +196,28 @@ let dal = {
             let response = {
                 code: 200,
                 data: ""
+            }
+            return response;
+        } catch (error) {
+            console.log(`There was an error ${error}`)
+            let response = {
+                code: 500,
+                data: error
+            }
+            return response;
+        } finally {
+            await client.close();
+        }
+    },
+    getGigById: async (gigId) => {
+        try {
+            await client.connect();
+            const db = await client.db("gigTracker")
+            const collection = db.collection("gigs")
+            let gig = await collection.findOne({ _id: new ObjectId(gigId) });
+            let response = {
+                code: 200,
+                data: gig
             }
             return response;
         } catch (error) {
@@ -236,18 +302,102 @@ let dal = {
     //         await client.close();
     //     }
     // },
-    removeShift: async (shiftId) => {
-
+    deleteShift: async (shiftId) => {
+        try {
+            await client.connect();
+            const db = await client.db("gigTracker")
+            const collection = db.collection("shifts")
+            let shift = await collection.deleteOne({ _id: new ObjectId(shiftId) });
+            let response = {
+                code: 200,
+                data: shift
+            }
+            return response;
+        } catch (error) {
+            console.log(`There was an error ${error}`)
+            let response = {
+                code: 500,
+                data: error
+            }
+            return response;
+        } finally {
+            await client.close();
+        }
     },
-    removeGig: async (gigId) => {
-
+    deleteEarning: async (earningId) => {
+        try {
+            await client.connect();
+            const db = await client.db("gigTracker")
+            const collection = db.collection("earnings")
+            let earning = await collection.deleteOne({ _id: new ObjectId(earningId) });
+            let response = {
+                code: 200,
+                data: earning
+            }
+            return response;
+        } catch (error) {
+            console.log(`There was an error ${error}`)
+            let response = {
+                code: 500,
+                data: error
+            }
+            return response;
+        } finally {
+            await client.close();
+        }
     },
-    updateShift: async (shiftId, shiftDetails) => {
+    // removeGig: async (gigId) => {
 
+    // },
+    editShift: async (shiftId, shiftDetails) => {
+        try {
+            await client.connect();
+            const db = await client.db("gigTracker")
+            const collection = db.collection("shifts")
+            shiftDetails.source = new ObjectId(shiftDetails.source);
+            let shift = await collection.updateOne({ _id: new ObjectId(shiftId) }, { $set: shiftDetails });
+            let response = {
+                code: 200,
+                data: shift
+            }
+            return response;
+        } catch (error) {
+            console.log(`There was an error ${error}`)
+            let response = {
+                code: 500,
+                data: error
+            }
+            return response;
+        } finally {
+            await client.close();
+        }
     },
-    updateGig: async (gigId, gigDetails) => {
-
+    editEarning: async (earningId, earningDetails) => {
+        try {
+            await client.connect();
+            const db = await client.db("gigTracker")
+            const collection = db.collection("earnings")
+            earningDetails.source = new ObjectId(earningDetails.source);
+            let earning = await collection.updateOne({ _id: new ObjectId(earningId) }, { $set: earningDetails });
+            let response = {
+                code: 200,
+                data: earning
+            }
+            return response;
+        } catch (error) {
+            console.log(`There was an error ${error}`)
+            let response = {
+                code: 500,
+                data: error
+            }
+            return response;
+        } finally {
+            await client.close();
+        }
     }
+    // updateGig: async (gigId, gigDetails) => {
+
+    // }
 
 }
 

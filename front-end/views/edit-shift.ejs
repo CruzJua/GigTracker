@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/css/root.css">
+        <link rel="stylesheet" href="/css/add-shift.css">
+    </head>
+    <body>
+        <%- include('templates/header.ejs') %>
+        <section class="main-content">
+            <h1>Edit your shift details here</h1>
+            <p>Track your gigs and make your life easier</p>
+            <form action="/edit-shift/<%= shift._id %>" method="POST">
+            <label for="source">Source of Earnings:</label>
+            <select name="source" required>
+            <%- include('templates/gig-selector.ejs', {gigToShow: shift.source, gigsByCatagory: gigsByCatagory}); %>
+            </select>
+            <br />
+            <label for="date">Date:</label>
+            <input type="date" name="date" value="<%= date %>" required>
+            <br />
+            <label for="sOdometerReading">Start Odometer Reading:</label>
+            <input type="number" name="sOdometerReading" value="<%= shift.startingMiles %>" required>
+            <br />
+            <label for="eOdometerReading">End Odometer Reading:</label>
+            <input type="number" name="eOdometerReading" value="<%= shift.endingMiles %>" required>
+            <br />
+            <label for="notes">Notes:</label>
+            <span class="notes">
+            <textarea name="notes" id="notes"><%= shift.notes %></textarea>
+            </span>
+            <br />
+            <input type="submit" value="Update Shift">
+            </form>
+            </section>
+        <%- include('templates/footer.ejs') %>
+    </body>
+</html>

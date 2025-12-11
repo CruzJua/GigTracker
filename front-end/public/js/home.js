@@ -2,12 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const gigSelector = document.getElementById('gigSelector');
     const gigName = document.getElementById('gigName');
     let gigNameText = '';
-    let gigId = '';
     gigSelector.addEventListener('change', () => {
         if (gigSelector.value !== 'none') {
-            let [gigId, gigName] = gigSelector.value.split('|');
+            selectedIndex = gigSelector.selectedIndex;
+            let gigName = gigSelector.options[selectedIndex].text;
             gigNameText = gigName;
-            console.log(gigId);
         } else {
             gigNameText = '';
         }

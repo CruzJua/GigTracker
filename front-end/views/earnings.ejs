@@ -16,6 +16,44 @@
             <%- include('templates/gig-selector.ejs', {gigToShow: gigToShow, gigsByCatagory: gigsByCatagory}); %>
             </select>
         </form>
+        <% if (message) { %>
+        <p><%= message %></p>
+        <% } %>
+        <% if (data) { %>
+        <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Earnings Date</th>
+                    <th>Earnings Pay</th>
+                    <th>Earnings Tips</th>
+                    <th>Earnings Base Pay</th>
+                    <th>Earnings Total Hours Worked</th>
+                    <th>Earnings Source</th>
+                    <th>Earnings Notes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(earning => { %>
+                <tr>
+                    <td><%= earning.date.slice(0, earning.date.indexOf('T')) %></td>
+                    <td><%= earning.payoutAmount %></td>
+                    <td><%= earning.tips %></td>
+                    <td><%= earning.basePay %></td>
+                    <td><%= earning.totalHoursWorked %></td>
+                    <td><%= earning.source %></td>
+                    <td><%= earning.notes === undefined || earning.notes === "" ? "No Notes" : earning.notes %></td>
+                    <td><div class="actions">
+                    <a href="/edit-earning/<%= earning._id %>"><button>Edit</button></a>
+                    <a href="/delete-earning/<%= earning._id %>"><button>Delete</button></a>
+                    </div></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        </div>
+        <% } %>
         </section>
         <%- include('templates/footer.ejs') %>
     </body>

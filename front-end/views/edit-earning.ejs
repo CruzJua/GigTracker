@@ -8,32 +8,32 @@
     <body>
         <%- include('templates/header.ejs') %>
         <section class="main-content">
-            <h1>Add your earnings details here</h1>
+            <h1>Edit your earnings details here</h1>
             <p>Track your gigs and make your life easier</p>
-            <form action="/add-earnings" method="POST">
+            <form action="/edit-earning/<%= earning._id %>" method="POST">
             <label for="source">Source of Earnings:</label>
             <select name="source" required>
-            <%- include('templates/gig-selector.ejs', {gigToShow: gigToShow, gigsByCatagory: gigsByCatagory}); %>
+            <%- include('templates/gig-selector.ejs', {gigToShow: earning.source, gigsByCatagory: gigsByCatagory}); %>
             </select>
             <br />
             <label for="payoutAmount">Total Amount Earned:</label>
-            <input type="number" name="payoutAmount" id="payoutAmount" required>
+            <input type="number" name="payoutAmount" id="payoutAmount" value="<%= earning.payoutAmount %>" required>
             <br />
             <label for="tips">Tips:</label>
-            <input type="number" name="tips" id="tips" required>
+            <input type="number" name="tips" id="tips" value="<%= earning.tips %>" required>
             <br />
             <label for="date">Date:</label>
-            <input type="date" name="date" id="date" required>
+            <input type="date" name="date" id="date" value="<%= date %>" required>
             <br />
             <label for="totalHoursWorked">Hours Worked:</label>
-            <input type="number" name="totalHoursWorked" id="totalHoursWorked" required>
+            <input type="number" name="totalHoursWorked" id="totalHoursWorked" value="<%= earning.totalHoursWorked %>" required>
             <br />
             <label for="notes">Notes:</label>
             <span class="notes">
-            <textarea name="notes" id="notes"></textarea>
+            <textarea name="notes" id="notes" value="<%= earning.notes %>"></textarea>
             </span>
             <br />
-            <input type="submit" value="Submit">
+            <input type="submit" value="Update Earnings">
             </form>
             </section>
         <%- include('templates/footer.ejs') %>

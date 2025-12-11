@@ -3,7 +3,7 @@
     <head>
         <title><%= title %></title>
         <link rel="stylesheet" href="/css/root.css">
-        <link rel="stylesheet" href="/css/shift.css">
+        <link rel="stylesheet" href="/css/shifts.css">
     </head>
     <body>
         <%- include('templates/header.ejs') %>
@@ -15,6 +15,44 @@
             <%- include('templates/gig-selector.ejs', {gigToShow: gigToShow, gigsByCatagory: gigsByCatagory}); %>
             </select>
         </form>
+
+        <% if (message) { %>
+        <p><%= message %></p>
+        <% } %>
+
+        <% if (data) { %>
+        <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Shift Date</th>
+                    <th>Shift Starting Miles</th>
+                    <th>Shift Ending Miles</th>
+                    <th>Shift Distance</th>
+                    <th>Shift Notes</th>
+                    <th>Shift Source</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(shift => { %>
+                <tr>
+                    <td><%= shift.date.slice(0, shift.date.indexOf('T')) %></td>
+                    <td><%= shift.startingMiles %></td>
+                    <td><%= shift.endingMiles %></td>
+                    <td><%= shift.distance %></td>
+                    <td><%= shift.notes === "" ? "No Notes" : shift.notes %></td>
+                    <td><%= shift.source %></td>
+                    <td><div class="actions">
+                    <a href="/edit-shift/<%= shift._id %>"><button>Edit</button></a>
+                    <a href="/delete-shift/<%= shift._id %>"><button>Delete</button></a>
+                    </div></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        </div>
+        <% } %>
         </section>
         <%- include('templates/footer.ejs') %>
     </body>

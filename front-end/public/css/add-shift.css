@@ -1,21 +1,2 @@
-textarea {
-    background-color: var(--bg-shadow);
-    border: solid 1px var(--mc);
-}
 
-form {
-    /* border: solid 1px var(--mc); */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-items: center;
-    justify-self: center;
-}
 
-.notes {
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-    justify-self: center;
-    width: 90%;
-}

@@ -14,6 +14,16 @@ color: var(--mc);
 body {
     margin: 0 0 0 0;
 }
+th {
+    background-color: var(--bg-shadow);
+    color: var(--mc);
+    padding: 5px 8px 5px 8px;
+    border: solid 1px var(--mc);
+}
+td {
+    padding: 5px 8px 5px 8px;
+    border: solid 1px var(--mc);
+}
 nav {
     display: flex;
     justify-content: space-around;
@@ -33,6 +43,21 @@ input {
     background-color: var(--bg-shadow);
     border: solid 1px var(--mc);
 }
+form {
+    /* border: solid 1px var(--mc); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+}
+textarea {
+    background-color: var(--bg-shadow);
+    border: solid 1px var(--mc);
+}
+table {
+    margin: 0 auto;
+}
 
 .nav-btn {
     color: var(--mc);
@@ -44,6 +69,19 @@ input {
     background-color: var(--bg);
 }
 .main-content {
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    min-width: 90%;
+}
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+    max-width: 90vw;
+}
+
+.notes {
+    display: flex;
     justify-content: center;
     justify-items: center;
     justify-self: center;

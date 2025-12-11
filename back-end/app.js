@@ -11,68 +11,144 @@ app.get('/', (req, res) => {
     res.send('Hello to the Docs of the Gig Tracker!');
     // TODO: Implement the Docs page
 });
-
 app.get('/earnings/:gigId', async (req, res) => {
     const gigId = req.params.gigId;
-    const earnings = await dal.getEarningsFromGig(gigId);
+    let earnings = await dal.getEarningsFromGig(gigId);
     if (earnings.code == 500){
+        console.log('500 error calling getEarnings from dal')
         earnings =  await dal.getEarnings();
-        let response = {
-            code: 200,
-            data: earnings
-        };
-        console.log('back-end response: ', response);
-        return res.json(response);
+        // console.log('back-end response: ', earnings);
+        return res.json(earnings);
     }
-    let response = {
-        code: 200,
-        data: earnings
-    };
-    console.log('back-end response: ', response);
-    res.json(response);
+    // console.log('back-end response: ', earnings);
+    res.json(earnings);
 });
 app.get('/shifts/:gigId', async (req, res) => {
     const gigId = req.params.gigId;
     let shifts = await dal.getShiftsFromGig(gigId);
     if (shifts.code == 500){
         shifts =  await dal.getShifts();
-        let response = {
-            code: 200,
-            data: shifts
-        };
-        console.log('back-end response: ', response);
-        return res.json(response);
+        // console.log('back-end response: ', shifts);
+        return res.json(shifts);
     }
-
-    let response = {
-        code: 200,
-        data: shifts
-    };
-    console.log('back-end response: ', response);
-    res.json(response);
+    // console.log('back-end response: ', shifts);
+    res.json(shifts);
 });
+app.get('/gig/:gigId', async (req, res) => {
+    const gigId = req.params.gigId;
+    let gig = await dal.getGigById(gigId);
+    if (gig.code == 500){
+        console.log('500 error gig not found')
+        gig =  {
+            code: 500,
+            data: {
+                name: "Gig Not Found",
+            }
+        }
+        // console.log('back-end response: ', gig);
+        return res.json(gig);
+    }
+    // console.log('back-end response: ', gig);
+    res.json(gig);
+});
+app.get('/getShiftById/:id', async (req, res) => {
+    const id = req.params.id;
+    let shift = await dal.getShiftById(id);
+    if (shift.code == 500){
+        shift =  {
+            code: 500,
+            data: {
+                message: "Shift Not Found",
+            }
+        }
+        // console.log('back-end response: ', shift);
+        return res.json(shift);
+    }
+    // console.log('back-end response: ', shift);
+    res.json(shift);
+});
+app.get('/getEarningById/:id', async (req, res) => {
+    const id = req.params.id;
+    let earning = await dal.getEarningById(id);
+    if (earning.code == 500){
+        earning =  {
+            code: 500,
+            data: {
+                message: "Earning Not Found",
+            }
+        }
+        // console.log('back-end response: ', earning);
+        return res.json(earning);
+    }
+    // console.log('back-end response: ', earning);
+    res.json(earning);
+});
+app.get('/delete-shift/:id', async (req, res) => {
+    const id = req.params.id;
+    let shift = await dal.deleteShift(id);
+    if (shift.code == 500){
+        shift =  {
+            code: 500,
+            data: {
+                message: "Shift Not Found",
+            }
+        }
+        // console.log('back-end response: ', shift);
+        return res.json(shift);
+    }
+    // console.log('back-end response: ', shift);
+    res.json(shift);
+});
+app.get('/delete-earning/:id', async (req, res) => {
+    const id = req.params.id;
+    let earning = await dal.deleteEarning(id);
+    if (earning.code == 500){
+        earning =  {
+            code: 500,
+            data: {
+                message: "Earning Not Found",
+            }
+        }
+        // console.log('back-end response: ', earning);
+        return res.json(earning);
+    }
+    // console.log('back-end response: ', earning);
+    res.json(earning);
+});
+
+
+
 app.post('/add-shift', async (req, res) => {
     let shiftDetails = req.body;
     shiftDetails = shiftFormatter(shiftDetails);
     const shift = await dal.addShift(shiftDetails);
-    let response = {
-        code: 200,
-        data: shift
-    };
-    console.log('back-end response: ', response);
-    res.json(response);
+    // console.log('back-end response: ', shift);
+    res.json(shift);
 });
 app.post('/add-earnings', async (req, res) => {
     let earningsDetails = req.body;
     earningsDetails = earningsFormatter(earningsDetails);
     const earnings = await dal.addEarnings(earningsDetails);
-    let response = {
-        code: 200,
-        data: earnings
-    };
-    console.log('back-end response: ', response);
-    res.json(response);
+    // console.log('back-end response: ', earnings);
+    res.json(earnings);
 });
+app.post('/edit-shift/:id', async (req, res) => {
+    const id = req.params.id;
+    let shiftDetails = req.body;
+    shiftDetails = shiftFormatter(shiftDetails);
+    const shift = await dal.editShift(id, shiftDetails);
+    // console.log('back-end response: ', shift);
+    res.json(shift);
+});
+app.post('/edit-earning/:id', async (req, res) => {
+    const id = req.params.id;
+    let earningsDetails = req.body;
+    earningsDetails = earningsFormatter(earningsDetails);
+    const earnings = await dal.editEarning(id, earningsDetails);
+    // console.log('back-end response: ', earnings);
+    res.json(earnings);
+});
+
 
 
 
