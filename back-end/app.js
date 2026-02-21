@@ -1,4 +1,5 @@
-const { dal } = require('./data/gigWorkDal');
+const path = require('path');
+const { dal } = require(path.join(__dirname, 'data', 'gigWorkDal'));
 const express = require('express');
 const app = express();
 
