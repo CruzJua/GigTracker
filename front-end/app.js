@@ -2,12 +2,13 @@ const express = require('express');
 const app = express();
 
 const render = require('ejs');
-const PORT = 3000;
+const PORT = 3025;
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
 app.locals.gigsByCatagory = {
     Delivery: [
         {name: "Door Dash", id: "6930992db06d779eb48ef6d2"},
@@ -203,10 +204,6 @@ app.post('/add-earnings', (req, res) => {
         res.redirect('/earnings?gig=' + id);
     });
 });
-app.listen(PORT, () => {
-    console.log('Server started on port', PORT);
-    console.log('http://localhost:' + PORT);
-});
 app.post('/edit-shift/:id', (req, res) => {
     const id = req.params.id;
     const shiftDetails = req.body;
@@ -324,3 +321,6 @@ async function replaceGigName(data){
     console.log("globalSources Found: ", globalSources)
     return data;
 }
+
+
+module.export = app;

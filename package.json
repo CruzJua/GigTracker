@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongodb": "^7.1.0"
+  },
+  "name": "gigtracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "root.js",
+  "scripts": {
+    "start": "node root.js",
+    "install-all": "npm install && npm install --workspaces",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon root.js"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CruzJua/GigTracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/CruzJua/GigTracker/issues"
+  },
+  "homepage": "https://github.com/CruzJua/GigTracker#readme"
+}

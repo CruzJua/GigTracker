@@ -150,23 +150,6 @@ app.post('/edit-earning/:id', async (req, res) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-app.listen(PORT, () => {
-    console.log('Server started on port', PORT);
-    console.log('http://localhost:' + PORT);
-});
-
-
 function shiftFormatter(shift) {
     let newDate = new Date(shift.date);
     let formattedStartingMiles = parseInt(shift.sOdometerReading);
@@ -198,3 +181,5 @@ function earningsFormatter(earnings) {
         notes: earnings.notes
     };
 }
+
+module.export = app;
