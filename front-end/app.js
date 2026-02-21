@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
+const path = require('path');
+const api_url = "http://localhost/api/";
 
 const render = require('ejs');
 
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -157,7 +160,7 @@ app.post('/add-shift', (req, res) => {
     const id = req.body.source;
     const shiftDetails = req.body;
     console.log('Shift details From Front End Form: ', shiftDetails);
-    let url = 'http://localhost:3050/add-shift'
+    let url = api_url + 'add-shift'
 
     let headers = {
         method: 'POST',
@@ -182,7 +185,7 @@ app.post('/add-earnings', (req, res) => {
     const id = req.body.source;
     const earningsDetails = req.body;
     console.log('Earnings details From Front End Form: ', earningsDetails);
-    let url = 'http://localhost:3050/add-earnings'
+    let url = api_url + 'add-earnings'
 
     let headers = {
         method: 'POST',
@@ -207,7 +210,7 @@ app.post('/edit-shift/:id', (req, res) => {
     const id = req.params.id;
     const shiftDetails = req.body;
     console.log('Shift details From Front End Form: ', shiftDetails);
-    let url = 'http://localhost:3050/edit-shift/' + id
+    let url = api_url + 'edit-shift/' + id
 
     let headers = {
         method: 'POST',
@@ -232,7 +235,7 @@ app.post('/edit-earning/:id', (req, res) => {
     const id = req.params.id;
     const earningsDetails = req.body;
     console.log('Earnings details From Front End Form: ', earningsDetails);
-    let url = 'http://localhost:3050/edit-earning/' + id
+    let url = api_url + 'edit-earning/' + id
 
     let headers = {
         method: 'POST',
@@ -260,7 +263,7 @@ async function filterData(route, id){
         console.log("No gig selected")
         return {message: "No gig selected"}
     }
-    let url = 'http://localhost:3050/' + route + '/' + id;
+    let url = api_url + '' + route + '/' + id;
     try {
         // console.log("Attempting to fetch data")
         let response = await fetch(url);
@@ -292,7 +295,7 @@ async function filterData(route, id){
     }
 }
 async function getGigName(gigId) {
-    let url = 'http://localhost:3050/gig/' + gigId;
+    let url = api_url + 'gig/' + gigId;
     try {
         // console.log("Attempting to fetch data")
         let response = await fetch(url);
