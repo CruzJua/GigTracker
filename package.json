@@ -14,8 +14,8 @@
     "dev": "nodemon root.js"
   },
   "workspaces": [
-    "frontend",
-    "backend"
+    "front-end",
+    "back-end"
   ],
   "repository": {
     "type": "git",
