@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 
-const frontendApp = require('./frontend/app'); 
-const backendApp = require('./backend/app');
+const frontendApp = require('./front-end/app'); 
+const backendApp = require('./back-end/app');
 
 
 app.use('/api', backendApp);
