@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 
 const render = require('ejs');
-const PORT = 3025;
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -323,4 +322,4 @@ async function replaceGigName(data){
 }
 
 
-module.export = app;
+module.exports = app;
